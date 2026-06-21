@@ -115,8 +115,8 @@ version: v1
 # Platform configuration
 platforms:
   linux:
-    enabled: false  
-    fallback: false
+    enabled: true 
+    fallback: true
   windows:
     enabled: true
     fallback: true

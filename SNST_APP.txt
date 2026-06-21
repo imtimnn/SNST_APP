@@ -1,0 +1,56 @@
+SNST APP
+
+Từ giờ, code hàng ngày làm trên nhánh dev
+Kiểm tra đang ở nhánh nào:
+git branch
+(Nhánh có dấu * phía trước là nhánh hiện tại đang đứng)
+Mỗi lần sửa code xong, lưu trên dev:
+bashgit add .
+git commit -m "Mô tả bạn vừa sửa gì"
+git push
+Bước 4: Khi tính năng đã ổn định, muốn đưa vào main để release
+bashgit checkout main
+git merge dev
+git push
+→ Lúc này main mới có code mới nhất, bạn build release (flutter build windows/flutter build linux) từ nhánh main để đảm bảo code đã qua kiểm tra ổn định.
+(Tùy chọn nâng cao) Tạo nhánh feature/ cho từng tính năng lớn
+Khi làm 1 tính năng lớn (ví dụ "quản lý kho hàng"), thay vì code thẳng trên dev, tạo nhánh riêng:
+git checkout dev
+git checkout -b feature/quan-ly-kho
+# code tính năng...
+git add .
+git commit -m "Thêm màn hình quản lý kho"
+git push -u origin feature/quan-ly-kho
+Code xong, quay lại dev, gộp vào:
+git checkout dev
+git merge feature/quan-ly-kho
+git push
+
+Tóm gọn quy trình làm việc hàng ngày (sau khi đã setup xong)
+Code trên nhánh dev (hoặc feature/...)
+    ↓ commit + push thường xuyên
+Khi ổn định → merge vào main
+    ↓
+Build release TỪ nhánh main
+Lệnh chuyển qua lại giữa các nhánh
+git checkout dev      # chuyển sang nhánh dev
+git checkout main     # chuyển sang nhánh main
+
+
+
+---------------------------------------------------
+
+git checkout dev      # chuyển sang nhánh dev
+git checkout main     # chuyển sang nhánh main
+git merge feature
+
+git add .
+git commit -m "Sửa giao diện login, thêm custom title bar"
+git push
+
+--------------------------------------------------
+
+Linux 
+cd ~/SNST_APP
+dart run native_splash_screen_cli setup
+dart run native_splash_screen_cli gen
